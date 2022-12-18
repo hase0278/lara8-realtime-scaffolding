@@ -1,1 +1,1 @@
-Lucban genesis web app source code
+Realtime scaffolding with beyondcode's laravel websockets setup
