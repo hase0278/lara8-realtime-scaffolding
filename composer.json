@@ -5,12 +5,15 @@
     "keywords": ["framework", "laravel"],
     "license": "MIT",
     "require": {
-        "php": "^7.3|^8.0",
+        "php": "^7.3|^8.1",
+        "beyondcode/laravel-websockets": "1.14.0",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
         "laravel/framework": "^8.75",
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
+        "league/flysystem": "^1.1",
+        "league/flysystem-aws-s3-v3": "^1.0",
         "pusher/pusher-php-server": "7.0.2"
     },
     "require-dev": {
@@ -34,6 +37,25 @@
         }
     },
     "scripts": {
+        "generate-env": [
+            "copy .env.example .env",
+            "php artisan key:generate"
+        ],
+        "cache": [
+            "php artisan optimize",
+            "php artisan event:cache",
+            "php artisan view:cache"
+        ],
+        "cache-clear": [
+            "php artisan optimize:clear",
+            "php artisan event:clear",
+            "php artisan view:clear"
+        ],
+        "setup": [
+            "npm install",
+            "php artisan storage:link",
+            "npm run prod"
+        ],
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
             "@php artisan package:discover --ansi"
